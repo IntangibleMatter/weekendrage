@@ -1,0 +1,52 @@
+[gd_scene load_steps=7 format=3 uid="uid://bpxdl143qhji2"]
+
+[ext_resource type="AudioStream" uid="uid://6w0gr1m6xqtk" path="res://assets/sfx/go/3.wav" id="1_b406d"]
+[ext_resource type="AudioStream" uid="uid://b1fui4kyg8hko" path="res://assets/sfx/go/2.wav" id="2_16ao7"]
+[ext_resource type="AudioStream" uid="uid://co225po5fwmhr" path="res://assets/sfx/go/1.wav" id="3_f3ywd"]
+[ext_resource type="AudioStream" uid="uid://cqpdfvflhk6vj" path="res://assets/sfx/go/gl.wav" id="4_pkj1p"]
+
+[sub_resource type="Animation" id="Animation_hkvkl"]
+resource_name = "321"
+length = 4.0
+tracks/0/type = "audio"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("AudioStreamPlayer")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"clips": [{
+"end_offset": 0.0,
+"start_offset": 0.0,
+"stream": ExtResource("1_b406d")
+}, {
+"end_offset": 0.0,
+"start_offset": 0.0,
+"stream": ExtResource("2_16ao7")
+}, {
+"end_offset": 0.0,
+"start_offset": 0.0,
+"stream": ExtResource("3_f3ywd")
+}, {
+"end_offset": 0.0,
+"start_offset": 0.0,
+"stream": ExtResource("4_pkj1p")
+}],
+"times": PackedFloat32Array(0, 1, 2, 3)
+}
+tracks/0/use_blend = true
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_kabea"]
+_data = {
+"321": SubResource("Animation_hkvkl")
+}
+
+[node name="goodluck" type="Node"]
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_kabea")
+}
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+bus = &"ui"

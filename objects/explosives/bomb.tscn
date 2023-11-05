@@ -1,0 +1,80 @@
+[gd_scene load_steps=8 format=3 uid="uid://ceqhv0xi50afx"]
+
+[ext_resource type="Script" path="res://objects/explosives/bomb.gd" id="1_fvw6h"]
+[ext_resource type="Texture2D" uid="uid://n1rwu3he3h0k" path="res://assets/graphics/obj/temp/bomb.png" id="1_hxcm2"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_wmw5f"]
+radius = 13.0384
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_bon3n"]
+radius = 128.25
+
+[sub_resource type="Animation" id="Animation_mk0wl"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_p7hw6"]
+resource_name = "destroy"
+length = 0.4
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.4),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(5, 0, 0, 1), Color(5, 0, 0, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_c44d7"]
+_data = {
+"RESET": SubResource("Animation_mk0wl"),
+"destroy": SubResource("Animation_p7hw6")
+}
+
+[node name="bomb" type="RigidBody2D"]
+collision_layer = 12
+collision_mask = 4
+script = ExtResource("1_fvw6h")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_wmw5f")
+
+[node name="Aoe" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 8
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Aoe"]
+shape = SubResource("CircleShape2D_bon3n")
+debug_color = Color(0, 0.627451, 0.501961, 0.419608)
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_hxcm2")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+autoplay = "RESET"
+libraries = {
+"": SubResource("AnimationLibrary_c44d7")
+}
+
+[node name="Label" type="Label" parent="."]
+offset_left = -16.0
+offset_top = -16.0
+offset_right = 16.0
+offset_bottom = 16.0
+horizontal_alignment = 1
+vertical_alignment = 1
