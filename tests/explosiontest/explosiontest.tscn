@@ -13,9 +13,9 @@ size = Vector2(64, 64)
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_h5vgr"]
 shader = ExtResource("4_x6eby")
-shader_parameter/color = Color(0, 0, 0, 1)
-shader_parameter/angle = 322.641
-shader_parameter/len = 45.283
+shader_parameter/color = Color(0.137255, 0.372549, 1, 1)
+shader_parameter/angle = 0.0
+shader_parameter/len = 16.0
 shader_parameter/fade_margin = 0.0
 
 [node name="explosiontest" type="Node2D"]
@@ -48,7 +48,8 @@ texture = ExtResource("2_sc2p4")
 [node name="player" parent="." instance=ExtResource("3_lpxpj")]
 position = Vector2(336, 80)
 
-[node name="Camera2D" type="Camera2D" parent="player"]
+[node name="RemoteTransform2D" type="RemoteTransform2D" parent="player"]
+remote_path = NodePath("../../Camera2D")
 
 [node name="DirectionalLight2D" type="DirectionalLight2D" parent="."]
 visible = false
@@ -65,3 +66,14 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
+
+[node name="Camera2D" type="Camera2D" parent="."]
+position = Vector2(336, 80)
+position_smoothing_enabled = true
+drag_horizontal_enabled = true
+drag_vertical_enabled = true
+drag_left_margin = 0.1
+drag_top_margin = 0.1
+drag_right_margin = 0.1
+drag_bottom_margin = 0.1
+editor_draw_drag_margin = true

@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://ceqhv0xi50afx"]
+[gd_scene load_steps=11 format=3 uid="uid://ceqhv0xi50afx"]
 
 [ext_resource type="Script" path="res://objects/explosives/bomb.gd" id="1_fvw6h"]
 [ext_resource type="Texture2D" uid="uid://n1rwu3he3h0k" path="res://assets/graphics/obj/temp/bomb.png" id="1_hxcm2"]
@@ -56,6 +56,9 @@ fill = 1
 fill_from = Vector2(0.5, 0.5)
 fill_to = Vector2(1, 0.5)
 
+[sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_ai7lx"]
+polygon = PackedVector2Array(4, -12, 12, -4, 12, 4, 4, 12, -4, 12, -12, 4, -12, -4, -4, -12)
+
 [node name="bomb" type="RigidBody2D" groups=["playerbomb"]]
 collision_layer = 8
 collision_mask = 4
@@ -95,5 +98,9 @@ vertical_alignment = 1
 position = Vector2(1.14441e-05, 7.62939e-06)
 scale = Vector2(4, 4)
 texture = SubResource("GradientTexture2D_bnyes")
+
+[node name="LightOccluder2D" type="LightOccluder2D" parent="."]
+occluder = SubResource("OccluderPolygon2D_ai7lx")
+occluder_light_mask = 0
 
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]
