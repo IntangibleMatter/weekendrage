@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://bs0wukn5stjtt"
+path="res://.godot/imported/94 Track 94.wav-ea6a78b452bc56bc6e86b660df7b75f1.sample"
+
+[deps]
+
+source_file="res://assets/sfx/bomb/raw/94 Track 94.wav"
+dest_files=["res://.godot/imported/94 Track 94.wav-ea6a78b452bc56bc6e86b660df7b75f1.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=0
