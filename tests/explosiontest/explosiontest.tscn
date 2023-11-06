@@ -1,13 +1,22 @@
-[gd_scene load_steps=5 format=3 uid="uid://d35yk8tjj7ppr"]
+[gd_scene load_steps=8 format=3 uid="uid://d35yk8tjj7ppr"]
 
 [ext_resource type="Script" path="res://tests/explosiontest/explosiontest.gd" id="1_37sjy"]
 [ext_resource type="Texture2D" uid="uid://ish2mqyngx2s" path="res://icon.svg" id="2_sc2p4"]
+[ext_resource type="PackedScene" uid="uid://b37ncgwigtfj5" path="res://objects/bodies/player/player.tscn" id="3_lpxpj"]
+[ext_resource type="Shader" path="res://tests/explosiontest/explosiontest.gdshader" id="4_x6eby"]
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_bbw2k"]
 bounce = 0.36
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_mwbsr"]
 size = Vector2(64, 64)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_h5vgr"]
+shader = ExtResource("4_x6eby")
+shader_parameter/color = Color(0, 0, 0, 1)
+shader_parameter/angle = 322.641
+shader_parameter/len = 45.283
+shader_parameter/fade_margin = 0.0
 
 [node name="explosiontest" type="Node2D"]
 script = ExtResource("1_37sjy")
@@ -36,4 +45,23 @@ shape = SubResource("RectangleShape2D_mwbsr")
 scale = Vector2(0.5, 0.5)
 texture = ExtResource("2_sc2p4")
 
-[node name="Camera2D" type="Camera2D" parent="RigidBody2D"]
+[node name="player" parent="." instance=ExtResource("3_lpxpj")]
+position = Vector2(336, 80)
+
+[node name="Camera2D" type="Camera2D" parent="player"]
+
+[node name="DirectionalLight2D" type="DirectionalLight2D" parent="."]
+visible = false
+shadow_enabled = true
+shadow_item_cull_mask = 2
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="ColorRect" type="ColorRect" parent="CanvasLayer"]
+material = SubResource("ShaderMaterial_h5vgr")
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2

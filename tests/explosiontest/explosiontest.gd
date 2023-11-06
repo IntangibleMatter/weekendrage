@@ -9,7 +9,8 @@ func _unhandled_input(event: InputEvent) -> void:
 		if event.pressed:
 			match event.button_index:
 				MOUSE_BUTTON_LEFT:
-					spawnbomb(timer_value)
+					for i in 10:
+						spawnbomb(timer_value)
 				MOUSE_BUTTON_RIGHT:
 					spawnbomb(0)
 				MOUSE_BUTTON_WHEEL_DOWN:
