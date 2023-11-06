@@ -9,6 +9,8 @@ const explosion_fx := preload("res://objects/explosives/explosionfx.tscn")
 @onready var aoe: Area2D = $Aoe
 @onready var animation_player: AnimationPlayer = $AnimationPlayer
 
+signal exploded
+
 func start_countdown(from: int) -> void:
 	var count := from
 	if count <= 0:
@@ -32,25 +34,26 @@ func explode() -> void:
 	get_tree().current_scene.add_child(efx)
 	push_away_objects(objects)
 	destroy_objects(objects)
+	emit_signal(&"exploded")
 	queue_free()
 
 
 func push_away_objects(objects: Array[Node2D]) -> void:
-	print("running")
+	#print("running")
 	for object in objects:
 		if not is_instance_valid(object):
 			continue
-		print(object)
+		#print(object)
 		if not object is RigidBody2D:
 			continue
 		
-		prints("hitting", object)
+		#prints("hitting", object)
 		var force_dir : Vector2 = -(global_position - object.global_position).normalized()
 		var angle_check : float = -get_angle_to(object.global_position)
 		if angle_check > PI / 2 - ANGLE_FORGIVENESS and angle_check < PI / 2 + ANGLE_FORGIVENESS:
 			force_dir = Vector2.UP
-			print("corrected angle!")
-		prints("angle", angle_check)
+			#print("corrected angle!")
+		#prints("angle", angle_check)
 		var force_size: Vector2 = force_dir \
 		* cubic_interpolate(
 			0.3, 0.9, 0, 1.0,
@@ -59,7 +62,7 @@ func push_away_objects(objects: Array[Node2D]) -> void:
 		* EXPLOSION_FORCE
 		
 		object.apply_impulse(force_size)
-	print("ran")
+	#print("ran")
 	await get_tree().physics_frame
 
 
@@ -79,5 +82,5 @@ func _on_body_entered(_body: Node) -> void:
 func freeze_movement() -> void:
 	freeze = true
 	lock_rotation = true
-	print(freeze)
+	#print(freeze)
 	start_countdown(1)

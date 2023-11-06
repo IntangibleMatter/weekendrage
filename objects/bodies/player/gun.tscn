@@ -1,14 +1,14 @@
 [gd_scene load_steps=7 format=3 uid="uid://cww0doc78k7fw"]
 
-[ext_resource type="Texture2D" uid="uid://dxljhqythu5xe" path="res://assets/graphics/obj/player/gun.png" id="1_1523x"]
-[ext_resource type="Texture2D" uid="uid://vf4iotbwr6v4" path="res://assets/graphics/obj/player/gun_n.png" id="2_c3o8v"]
-[ext_resource type="Texture2D" uid="uid://dweuxovrpt81p" path="res://assets/graphics/obj/player/gun_s.png" id="3_v4y5i"]
+[ext_resource type="Texture2D" uid="uid://0vjyya802y2b" path="res://assets/graphics/obj/player/gun_multi.png" id="1_gbw7h"]
+[ext_resource type="Texture2D" uid="uid://b50mv7knq73ij" path="res://assets/graphics/obj/player/gun_multi_n.png" id="2_g0sup"]
+[ext_resource type="Texture2D" uid="uid://ccp2uvfrg4tfq" path="res://assets/graphics/obj/player/gun_multi_s.png" id="3_h072y"]
 [ext_resource type="Script" path="res://objects/bodies/player/gun.gd" id="4_ytuam"]
 
 [sub_resource type="CanvasTexture" id="CanvasTexture_lck0k"]
-diffuse_texture = ExtResource("1_1523x")
-normal_texture = ExtResource("2_c3o8v")
-specular_texture = ExtResource("3_v4y5i")
+diffuse_texture = ExtResource("1_gbw7h")
+normal_texture = ExtResource("2_g0sup")
+specular_texture = ExtResource("3_h072y")
 
 [sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_iovqy"]
 polygon = PackedVector2Array(0, 11, 0, -11, 34, -11, 34, -16, 48, -16, 48, 16, 34, 16, 34, 11)
@@ -16,6 +16,7 @@ polygon = PackedVector2Array(0, 11, 0, -11, 34, -11, 34, -16, 48, -16, 48, 16, 3
 [node name="Gun" type="Sprite2D"]
 texture = SubResource("CanvasTexture_lck0k")
 offset = Vector2(24, 0)
+vframes = 6
 script = ExtResource("4_ytuam")
 
 [node name="Muzzle" type="Marker2D" parent="."]

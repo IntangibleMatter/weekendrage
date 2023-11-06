@@ -22,6 +22,7 @@ specular_texture = ExtResource("3_xwb3a")
 [node name="player" type="RigidBody2D"]
 collision_layer = 9
 physics_material_override = SubResource("PhysicsMaterial_c0yiw")
+angular_damp = 2.5
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CircleShape2D_v3204")
