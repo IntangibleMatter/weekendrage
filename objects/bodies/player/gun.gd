@@ -1,19 +1,25 @@
 extends Sprite2D
 
+const bombscene := preload("res://objects/explosives/bomb.tscn")
+
+@export var bomb_start_velocity : float = 512.0
+
 var parent : Node2D
 @onready var muzzle: Marker2D = $Muzzle
 
-#func _ready() -> void:
-#	if get_parent() == null:
-#		push_error("Yeah bud I can't work without a parent lmao")
-#		get_tree().quit()
-#
-#	parent = get_parent()
-	
+
+func _unhandled_input(event: InputEvent) -> void:
+	if event.is_action_pressed("fire"):
+		fire()
 
 
-func _physics_process(_delta: float) -> void:
+func fire() -> void:
+	var b := bombscene.instantiate()
+	b.apply_impulse(muzzle.global_position.direction_to(get_global_mouse_position()) * bomb_start_velocity)
+	b.global_position = muzzle.global_position
+	get_tree().current_scene.add_child(b)
+
+
+func _process(_delta: float) -> void:
 	look_at(get_global_mouse_position())
-#	var angle_to_mouse : float = get_angle_to(get_global_mouse_position())
-#	prints(Time.get_ticks_msec(),"mouse", angle_to_mouse)
-#	rotation = angle_to_mouse
+

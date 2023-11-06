@@ -70,3 +70,14 @@ func destroy_objects(objects: Array[Node2D]) -> void:
 		if not object.has_method(&"destroy"):
 			continue
 		object.destroy()
+
+
+func _on_body_entered(_body: Node) -> void:
+	call_deferred(&"freeze_movement")
+
+
+func freeze_movement() -> void:
+	freeze = true
+	lock_rotation = true
+	print(freeze)
+	start_countdown(1)
