@@ -19,8 +19,8 @@ func fire() -> void:
 	if active_bombs >= max_bomb_count:
 		return
 	var b := bombscene.instantiate()
-#	b.apply_impulse(muzzle.global_position.direction_to(get_global_mouse_position()) * bomb_start_velocity)
-	b.apply_impulse(calculate_bomb_velocity())
+	b.apply_impulse(muzzle.global_position.direction_to(get_global_mouse_position()) * bomb_start_velocity)
+#	b.apply_impulse(calculate_bomb_velocity())
 	b.global_position = muzzle.global_position
 	b.exploded.connect(update_bomb_count)
 	active_bombs += 1

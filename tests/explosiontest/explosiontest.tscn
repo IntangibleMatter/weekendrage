@@ -31,7 +31,7 @@ texture = ExtResource("2_sc2p4")
 collision_layer = 5
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="StaticBody2D"]
-polygon = PackedVector2Array(-488, -2024, -584, 168, 2056, 168, 1992, -2016, 2704, -5360, 2456, 408, -1104, 432, -1056, -5192)
+polygon = PackedVector2Array(-584, -2112, -584, 168, 2056, 168, 2056, -2048, 3624, -8184, 2456, 408, -1104, 432, -2040, -8272)
 
 [node name="RigidBody2D" type="RigidBody2D" parent="."]
 position = Vector2(67, 66)
