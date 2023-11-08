@@ -27,6 +27,22 @@ position = Vector2(720, -788)
 scale = Vector2(31.375, 31.6875)
 texture = ExtResource("2_sc2p4")
 
+[node name="Label" type="Label" parent="."]
+offset_right = 419.0
+offset_bottom = 286.0
+text = "Yooo dataminer what's up.
+Look first off I'm honoured you're even here.
+Second of all, no this isn't a room with invisible walls.
+Well, it technically is.
+But that's because I always just turned on 
+\"visible collision shapes\" in Godot's debug menu when
+I was in here.
+Anyways have fun bouncing around lol.
+
+
+|   |l 
+|| |_"
+
 [node name="StaticBody2D" type="StaticBody2D" parent="."]
 collision_layer = 5
 

@@ -7,6 +7,7 @@ const bombscene := preload("res://objects/explosives/bomb.tscn")
 var parent : Node2D
 @onready var muzzle: Marker2D = $Muzzle
 
+const max_bomb_velocity := 1024
 const max_bomb_count := 5
 var active_bombs := 0
 
@@ -38,6 +39,11 @@ func calculate_bomb_velocity() -> Vector2:
 	var t : float = sqrt(abs((2 * diff.y)) / gravity)
 	
 	vi.x = diff.x / t
+	
+	# make there be a max velocity
+	if vi.distance_to(Vector2.ZERO) > max_bomb_velocity:
+		vi = vi.normalized() * max_bomb_velocity
+	print(vi.distance_to(Vector2.ZERO))
 	return vi
 
 
