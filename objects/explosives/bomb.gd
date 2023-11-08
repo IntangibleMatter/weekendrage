@@ -11,6 +11,9 @@ const explosion_fx := preload("res://objects/explosives/explosionfx.tscn")
 
 signal exploded
 
+func _ready() -> void:
+	print("wkjhalkfsjh")
+
 func start_countdown(from: int) -> void:
 	var count := from
 	if count <= 0:
@@ -26,6 +29,7 @@ func start_countdown(from: int) -> void:
 
 
 func explode() -> void:
+	prints("blowing up", self)
 	collision_layer = 0
 	var objects := aoe.get_overlapping_bodies()
 	animation_player.play(&"destroy")
@@ -35,6 +39,7 @@ func explode() -> void:
 	push_away_objects(objects)
 	destroy_objects(objects)
 	emit_signal(&"exploded")
+	prints("queueing self for freeing.", self)
 	queue_free()
 
 
