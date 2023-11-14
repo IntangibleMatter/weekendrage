@@ -8,23 +8,20 @@ const explosion_fx := preload("res://objects/explosives/explosionfx.tscn")
 
 @onready var aoe: Area2D = $Aoe
 @onready var animation_player: AnimationPlayer = $AnimationPlayer
+@onready var sprite: Sprite2D = $Sprite2D
 
 signal exploded
 
 func _ready() -> void:
 	print("wkjhalkfsjh")
+	sprite.frame = 0
 
-func start_countdown(from: int) -> void:
-	var count := from
-	if count <= 0:
-		for _i in 3:
-			await get_tree().process_frame
-		explode()
-		return
+func start_countdown() -> void:
+	var count := 3
 	while count > 0:
-		$Label.text = str(count)
-		await get_tree().create_timer(1.0).timeout
+		sprite.frame = 4 - count
 		count -= 1
+		await get_tree().create_timer(0.3).timeout
 	explode()
 
 
@@ -88,4 +85,4 @@ func freeze_movement() -> void:
 	freeze = true
 	lock_rotation = true
 	#print(freeze)
-	start_countdown(1)
+	start_countdown()

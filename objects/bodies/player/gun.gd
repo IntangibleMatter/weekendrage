@@ -2,7 +2,7 @@ extends Sprite2D
 
 const bombscene := preload("res://objects/explosives/bomb.tscn")
 
-@export var bomb_start_velocity : float = 512.0
+#@export var bomb_start_velocity : float = 512.0
 
 var parent : Node2D
 @onready var muzzle: Marker2D = $Muzzle
@@ -23,6 +23,7 @@ func fire() -> void:
 #	b.apply_impulse(muzzle.global_position.direction_to(get_global_mouse_position()) * bomb_start_velocity)
 	b.apply_impulse(calculate_bomb_velocity())
 	b.global_position = muzzle.global_position
+#	b.add_constant_torque(randf_range(0, PI * 2) * 10)
 	b.exploded.connect(update_bomb_count)
 	active_bombs += 1
 	frame = active_bombs

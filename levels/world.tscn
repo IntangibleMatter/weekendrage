@@ -1,3 +1,7 @@
 [gd_scene format=3 uid="uid://djfep5afjpl0a"]
 
 [node name="world" type="Node2D"]
+
+[node name="Obj" type="Node2D" parent="."]
+
+[node name="Level" type="Node2D" parent="."]
