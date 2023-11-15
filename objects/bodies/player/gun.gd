@@ -42,7 +42,7 @@ func calculate_bomb_velocity() -> Vector2:
 	vi.x = diff.x / t
 	
 	# make there be a max velocity
-	if vi.distance_to(Vector2.ZERO) > max_bomb_velocity:
+	if abs(vi.distance_to(Vector2.ZERO)) > max_bomb_velocity:
 		vi = vi.normalized() * max_bomb_velocity
 	print(vi.distance_to(Vector2.ZERO))
 	return vi

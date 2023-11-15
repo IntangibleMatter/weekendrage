@@ -17,12 +17,13 @@ func _ready() -> void:
 	sprite.frame = 0
 
 func start_countdown() -> void:
-	var count := 3
-	while count > 0:
-		sprite.frame = 4 - count
-		count -= 1
-		await get_tree().create_timer(0.3).timeout
-	explode()
+	animation_player.play("countdown")
+#	var count := 3
+#	while count > 0:
+#		sprite.frame = 4 - count
+#		count -= 1
+#		await get_tree().create_timer(0.3).timeout
+#	explode()
 
 
 func explode() -> void:

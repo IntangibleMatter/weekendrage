@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://ceqhv0xi50afx"]
+[gd_scene load_steps=14 format=3 uid="uid://ceqhv0xi50afx"]
 
 [ext_resource type="Script" path="res://objects/explosives/bomb.gd" id="1_fvw6h"]
 [ext_resource type="Texture2D" uid="uid://cligh3gac5upg" path="res://assets/graphics/obj/bomb/bomb.png" id="2_ss7f6"]
@@ -28,6 +28,30 @@ tracks/0/keys = {
 "update": 0,
 "values": [Color(1, 1, 1, 1)]
 }
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sprite2D:frame")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("PointLight2D:color")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
 
 [sub_resource type="Animation" id="Animation_p7hw6"]
 resource_name = "destroy"
@@ -45,9 +69,52 @@ tracks/0/keys = {
 "values": [Color(1, 1, 1, 1), Color(5, 0, 0, 1), Color(5, 0, 0, 0)]
 }
 
+[sub_resource type="Animation" id="Animation_1prmc"]
+resource_name = "countdown"
+step = 0.333333
+tracks/0/type = "method"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(1),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"explode"
+}]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sprite2D:frame")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.333333, 0.666667),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [1, 2, 3]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("PointLight2D:color")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.333333, 0.666667),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [Color(0.199802, 0.595987, 0.294087, 1), Color(1, 0.784558, 0.145083, 1), Color(1, 0, 0.251087, 1)]
+}
+
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_c44d7"]
 _data = {
 "RESET": SubResource("Animation_mk0wl"),
+"countdown": SubResource("Animation_1prmc"),
 "destroy": SubResource("Animation_p7hw6")
 }
 
@@ -75,6 +142,7 @@ script = ExtResource("1_fvw6h")
 shape = SubResource("CircleShape2D_wmw5f")
 
 [node name="Aoe" type="Area2D" parent="."]
+visible = false
 collision_layer = 0
 collision_mask = 8
 
