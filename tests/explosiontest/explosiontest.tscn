@@ -27,9 +27,19 @@ position = Vector2(720, -788)
 scale = Vector2(31.375, 31.6875)
 texture = ExtResource("2_sc2p4")
 
+[node name="StaticBody2D" type="StaticBody2D" parent="."]
+collision_layer = 5
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="StaticBody2D"]
+polygon = PackedVector2Array(-584, -2112, -584, 168, 2056, 168, 2056, -2048, 3624, -8184, 2456, 408, -1104, 432, -2040, -8272)
+
+[node name="Polygon2D" type="Polygon2D" parent="StaticBody2D"]
+color = Color(0, 0, 0, 1)
+polygon = PackedVector2Array(-584, -2112, -584, 168, 2056, 168, 2056, -2048, 3624, -8184, 2456, 408, -1104, 432, -2040, -8272)
+
 [node name="Label" type="Label" parent="."]
 offset_right = 419.0
-offset_bottom = 286.0
+offset_bottom = 312.0
 text = "Yooo dataminer what's up.
 Look first off I'm honoured you're even here.
 Second of all, no this isn't a room with invisible walls.
@@ -42,12 +52,6 @@ Anyways have fun bouncing around lol.
 
 |   |l 
 || |_"
-
-[node name="StaticBody2D" type="StaticBody2D" parent="."]
-collision_layer = 5
-
-[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="StaticBody2D"]
-polygon = PackedVector2Array(-584, -2112, -584, 168, 2056, 168, 2056, -2048, 3624, -8184, 2456, 408, -1104, 432, -2040, -8272)
 
 [node name="RigidBody2D" type="RigidBody2D" parent="."]
 position = Vector2(67, 66)

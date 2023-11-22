@@ -10,7 +10,8 @@ var timer_value : int = 1
 #			match event.button_index:
 #				MOUSE_BUTTON_LEFT:
 #					for i in 10:
-#						spawnbomb(timer_value)
+#					k
+#	spawnbomb(timer_value)
 #				MOUSE_BUTTON_RIGHT:
 #					spawnbomb(0)
 #				MOUSE_BUTTON_WHEEL_DOWN:

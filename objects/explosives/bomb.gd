@@ -10,11 +10,16 @@ const explosion_fx := preload("res://objects/explosives/explosionfx.tscn")
 @onready var animation_player: AnimationPlayer = $AnimationPlayer
 @onready var sprite: Sprite2D = $Sprite2D
 
+var countdown = false
+
 signal exploded
 
 func _ready() -> void:
 	print("wkjhalkfsjh")
 	sprite.frame = 0
+	await get_tree().process_frame
+	if countdown:
+		start_countdown()
 
 func start_countdown() -> void:
 	animation_player.play("countdown")
@@ -80,10 +85,13 @@ func destroy_objects(objects: Array[Node2D]) -> void:
 
 func _on_body_entered(_body: Node) -> void:
 	call_deferred(&"freeze_movement")
+	await get_tree().process_frame
+	if not countdown:
+		animation_player.play("countdown_fast")
 
 
 func freeze_movement() -> void:
 	freeze = true
 	lock_rotation = true
 	#print(freeze)
-	start_countdown()
+	

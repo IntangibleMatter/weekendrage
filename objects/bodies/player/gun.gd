@@ -14,12 +14,18 @@ var active_bombs := 0
 func _unhandled_input(event: InputEvent) -> void:
 	if event.is_action_pressed("fire"):
 		fire()
+	if event.is_action_pressed("fire_sticky"):
+		fire(true)
 
 
-func fire() -> void:
+func fire(countdown: bool = false) -> void:
 	if active_bombs >= max_bomb_count:
 		return
 	var b := bombscene.instantiate()
+	if countdown:
+		b.countdown = true
+	else:
+		b.countdown = false
 #	b.apply_impulse(muzzle.global_position.direction_to(get_global_mouse_position()) * bomb_start_velocity)
 	b.apply_impulse(calculate_bomb_velocity())
 	b.global_position = muzzle.global_position
